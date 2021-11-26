@@ -14,27 +14,33 @@ public class IssueManager {
     }
 
 
-    public void add(Issue item) {
-        repository.save(item);
-    }
+    public void add(Issue item) {repository.save(item); }
 
-    public void showOpenIssue(boolean isOpen) {
-        repository.listOpenIssue(isOpen);
+    public void showOpenIssue(Boolean isOpen) {
+        repository.listOpenIssue(true);
     }
 
     public void showClosedIssue(boolean isOpen) {
-        repository.listClosedIssue(isOpen);
+        repository.listClosedIssue(false);
+    }
+
+    public void OpenIssue(int id) {
+        repository.openIssue(id);
+    }
+
+    public void ClosedIssue(int id) {
+        repository.closeIssue(id);
     }
 
     public void filterByAuthor(String author) {
         repository.filterByAuthor(author);
     }
 
-    public void filterBylabel(Set label) {
+    public void filterByLabel(Set <Issue> label) {
         repository.filterByLabel(label);
     }
 
-    public void filterByAssigned(Set assigned) {
+    public void filterByAssigned(Set <Issue> assigned) {
         repository.filterByAssigned(assigned);
     }
 }
