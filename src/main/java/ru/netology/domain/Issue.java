@@ -7,16 +7,16 @@ import java.util.Set;
 public class Issue {
     private int id;
     private String author;
-    private Set<Issue> label;
+    private Set<String> label;
     private String projects;
-    private Set<Issue> milestones;
-    private Set<Issue> assigned;
+    private Set<String> milestones;
+    private Set<String> assigned;
     private boolean isOpen;
 
     public Issue() {
     }
 
-    public Issue(int id, String author, Set<Issue> label, String projects, Set<Issue> milestones, Set<Issue> assigned, boolean isOpen) {
+    public Issue(int id, String author, Set<String> label, String projects, Set<String> milestones, Set<String> assigned, boolean isOpen) {
         this.id = id;
         this.author = author;
         this.label = label;
@@ -42,11 +42,11 @@ public class Issue {
         this.author = author;
     }
 
-    public Set<Issue> getLabel() {
+    public Set<String> getLabel() {
         return label;
     }
 
-    public void setLabel(Set<Issue> label) {
+    public void setLabel(Set<String> label) {
         this.label = label;
     }
 
@@ -58,19 +58,19 @@ public class Issue {
         this.projects = projects;
     }
 
-    public Set<Issue> getMilestones() {
+    public Set<String> getMilestones() {
         return milestones;
     }
 
-    public void setMilestones(Set<Issue> milestones) {
+    public void setMilestones(Set<String> milestones) {
         this.milestones = milestones;
     }
 
-    public Set<Issue> getAssigned() {
+    public Set<String> getAssigned() {
         return assigned;
     }
 
-    public void setAssigned(Set<Issue> assigned) {
+    public void setAssigned(Set<String> assigned) {
         this.assigned = assigned;
     }
 

@@ -16,9 +16,9 @@ class IssueManagerTest {
     private IssueRepository repository = new IssueRepository();
     private IssueManager manager = new IssueManager(repository);
 
-    private Issue first = new Issue(1, "Author1", Set.of(), "project1", Set.of(), Set.of(), true);
-    private Issue second = new Issue(2, "Author2", Set.of(), "project2", Set.of(), Set.of(), false);
-    private Issue third = new Issue(3, "Author3", Set.of(), "project3", Set.of(), Set.of(), true);
+    private Issue first = new Issue(1, "Author1", Collections.singleton("1"), "project1", Collections.singleton("1"), Collections.singleton("man1"), true);
+    private Issue second = new Issue(2, "Author2", Collections.singleton("2") , "project2", Collections.singleton("2"),  Collections.singleton("man2"), false);
+    private Issue third = new Issue(3, "Author3",  Collections.singleton("3"), "project3",  Collections.singleton("3"), Collections.singleton("man3"), true);
 
 
     @Test
@@ -76,7 +76,7 @@ class IssueManagerTest {
         manager.add(second);
         manager.add(third);
 
-        assertEquals(List.of(second), manager.filterByLabel(2));
+        assertEquals(List.of(second), manager.filterByLabel( Collections.singleton("2")));
     }
 
     @Test
@@ -85,6 +85,6 @@ class IssueManagerTest {
         manager.add(second);
         manager.add(third);
 
-        assertEquals(List.of(first), manager.filterByAssigned(1));
+        assertEquals(List.of(first), manager.filterByAssigned( Collections.singleton("man1")));
     }
 }

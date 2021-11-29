@@ -18,11 +18,13 @@ public class IssueRepository {
         return items;
     }
 
-    public Collection<Issue> listOpenIssue(boolean isOpen) {
+    public Collection<Issue> listOpenIssue(Boolean isOpen) {
+        items.stream().filter(issue -> issue.isOpen() == isOpen);
         return items;
     }
 
-    public Collection<Issue> listClosedIssue(boolean isOpen) {
+    public Collection<Issue> listClosedIssue(Boolean isOpen) {
+        items.stream().filter(issue -> issue.isOpen() != isOpen);
         return items;
     }
 
@@ -44,11 +46,11 @@ public class IssueRepository {
         items.stream().filter(issue -> issue.getAuthor().equalsIgnoreCase(author));
     }
 
-    public void filterByLabel(Set<Issue> label) {
+    public void filterByLabel(Set<String> label) {
         items.stream().filter(el -> el.getLabel() == label);
     }
 
-    public void filterByAssigned(Set<Issue> assigned) {
+    public void filterByAssigned(Set<String> assigned) {
         items.stream().filter(el -> el.getAssigned() == assigned);
     }
 }
