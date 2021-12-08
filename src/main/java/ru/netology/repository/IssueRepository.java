@@ -19,67 +19,75 @@ public class IssueRepository {
     }
 
     public List<Issue> listOpenIssue(boolean isOpen) {
+        List<Issue> result = new ArrayList<Issue>();
         for (Issue issue : findAll()) {
             if (issue.getIsOpen()== true) {
-                return items;
+                result.add(issue);
             }
         }
-        return items;
+        return result;
     }
 
 
     public List<Issue> listClosedIssue(boolean isOpen) {
+        List<Issue> result = new ArrayList<Issue>();
         for (Issue issue : findAll()) {
             if (!issue.getIsOpen()) {
-                return items;
+                result.add(issue);
             }
         }
-        return items;
+        return result;
     }
 
 
     public List<Issue> openIssue(int id) {
-        for (Issue issue : findAll()) {
-            if ((issue.getIsOpen()) && issue.getId() == id) {
-                issue.setIsOpen(false);
-            }
-        }
-        return items;
-    }
-
-    public List<Issue> closeIssue(int id) {
+        List<Issue> result = new ArrayList<Issue>();
         for (Issue issue : findAll()) {
             if ((!issue.getIsOpen()) && issue.getId() == id) {
                 issue.setIsOpen(true);
-                return items;
+                result.add(issue);
             }
         }
-        return items;
+        return result;
+    }
+
+    public List<Issue> closeIssue(int id) {
+        List<Issue> result = new ArrayList<Issue>();
+        for (Issue issue : findAll()) {
+            if ((issue.getIsOpen()) && issue.getId() == id) {
+                issue.setIsOpen(false);
+                result.add(issue);
+            }
+        }
+        return result;
     }
 
     public List<Issue> filterByAuthor(String author) {
+        List<Issue> result = new ArrayList<Issue>();
         for (Issue issue : findAll()) {
             if (issue.getAuthor().equals(author)) {
-                return items;
+                result.add(issue);
             }
         }
-        return items;
+        return result;
     }
     public List<Issue> filterByLabel(Set<String> label) {
+        List<Issue> result = new ArrayList<Issue>();
         for (Issue issue : findAll()) {
             if (issue.getLabel().equals(label)) {
-                return items;
+                result.add(issue);
             }
         }
-        return items;
+        return result;
     }
 
     public List<Issue> filterByAssigned(Set<String> assigned) {
+        List<Issue> result = new ArrayList<Issue>();
         for (Issue issue : findAll()) {
             if (issue.getAssigned().equals(assigned)) {
-                return items;
+                result.add(issue);
             }
         }
-        return items;
+        return result;
     }
 }

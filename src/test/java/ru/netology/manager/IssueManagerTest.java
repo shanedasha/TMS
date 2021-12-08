@@ -27,7 +27,12 @@ class IssueManagerTest {
         manager.add(third);
 
 
-        assertEquals(List.of(first,third), repository.listOpenIssue(true));
+        assertEquals(List.of(first,third), manager.showOpenIssue(true));
+    }
+    @Test
+    void showOpenIssue0() {
+
+        assertEquals(List.of(), manager.showOpenIssue(true));
     }
 
     @Test
@@ -36,9 +41,13 @@ class IssueManagerTest {
         manager.add(second);
         manager.add(third);
 
-        assertEquals(List.of(second), repository.listClosedIssue(false));
+        assertEquals(List.of(second), manager.showClosedIssue(false));
     }
+    @Test
+    void showClosedIssue0() {
 
+        assertEquals(List.of(), manager.showClosedIssue(false));
+    }
 
     @Test
     void openIssue() {
@@ -46,7 +55,7 @@ class IssueManagerTest {
         manager.add(second);
         manager.add(third);
 
-        assertEquals(List.of(first), repository.openIssue(2));
+        assertEquals(List.of(second), manager.OpenIssue(2));
     }
 
     @Test
@@ -54,9 +63,8 @@ class IssueManagerTest {
         manager.add(first);
         manager.add(second);
         manager.add(third);
-        manager.ClosedIssue(1);
 
-        assertEquals(List.of(first), repository.closeIssue(1));
+        assertEquals(List.of(first), manager.ClosedIssue(1));
     }
 
     @Test
@@ -65,7 +73,7 @@ class IssueManagerTest {
         manager.add(second);
         manager.add(third);
 
-        assertEquals(List.of(first), repository.filterByAuthor( ("Author1")));
+        assertEquals(List.of(first), manager.filterByAuthor( ("Author1")));
 
     }
 
@@ -75,7 +83,7 @@ class IssueManagerTest {
         manager.add(second);
         manager.add(third);
 
-        assertEquals(List.of(second), repository.filterByLabel( Set.of("2")));
+        assertEquals(List.of(second), manager.filterByLabel( Set.of("2")));
     }
 
     @Test
@@ -84,6 +92,6 @@ class IssueManagerTest {
         manager.add(second);
         manager.add(third);
 
-        assertEquals(List.of(first), repository.filterByAssigned( Set.of("man1")));
+        assertEquals(List.of(first), manager.filterByAssigned( Set.of("man1")));
     }
 }
