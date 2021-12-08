@@ -4,10 +4,8 @@ import org.junit.jupiter.api.Test;
 import ru.netology.domain.Issue;
 import ru.netology.repository.IssueRepository;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.lang.reflect.Array;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -16,9 +14,10 @@ class IssueManagerTest {
     private IssueRepository repository = new IssueRepository();
     private IssueManager manager = new IssueManager(repository);
 
-    private Issue first = new Issue(1, "Author1", Collections.singleton("1"), "project1", Collections.singleton("1"), Collections.singleton("man1"), true);
-    private Issue second = new Issue(2, "Author2", Collections.singleton("2") , "project2", Collections.singleton("2"),  Collections.singleton("man2"), false);
-    private Issue third = new Issue(3, "Author3",  Collections.singleton("3"), "project3",  Collections.singleton("3"), Collections.singleton("man3"), true);
+    private Issue first = new Issue(1, "Author1", Set.of("1"), "project1", Set.of("1"), Set.of("man1"), true);
+    private Issue second = new Issue(2, "Author2",Set.of("2") , "project2", Set.of("2"),  Set.of("man2"), false);
+    private Issue third = new Issue(3, "Author3", Set.of("3"), "project3",  Set.of("3"), Set.of("man3"), true);
+
 
 
     @Test
@@ -27,7 +26,8 @@ class IssueManagerTest {
         manager.add(second);
         manager.add(third);
 
-        assertEquals(List.of(first, third), manager.showOpenIssue(true));
+
+        assertEquals(List.of(first,third), repository.listOpenIssue(true));
     }
 
     @Test
@@ -36,7 +36,7 @@ class IssueManagerTest {
         manager.add(second);
         manager.add(third);
 
-        assertEquals(List.of(second), manager.showClosedIssue(false));
+        assertEquals(List.of(second), repository.listClosedIssue(false));
     }
 
 
@@ -45,9 +45,8 @@ class IssueManagerTest {
         manager.add(first);
         manager.add(second);
         manager.add(third);
-        manager.OpenIssue(1);
 
-        assertEquals(List.of(first), manager.showOpenIssue(true));
+        assertEquals(List.of(first), repository.openIssue(2));
     }
 
     @Test
@@ -57,7 +56,7 @@ class IssueManagerTest {
         manager.add(third);
         manager.ClosedIssue(1);
 
-        assertEquals(List.of(first), manager.showClosedIssue(false));
+        assertEquals(List.of(first), repository.closeIssue(1));
     }
 
     @Test
@@ -66,7 +65,7 @@ class IssueManagerTest {
         manager.add(second);
         manager.add(third);
 
-        assertEquals(List.of(first), manager.filterByAuthor("Author1"));
+        assertEquals(List.of(first), repository.filterByAuthor( ("Author1")));
 
     }
 
@@ -76,7 +75,7 @@ class IssueManagerTest {
         manager.add(second);
         manager.add(third);
 
-        assertEquals(List.of(second), manager.filterByLabel( Collections.singleton("2")));
+        assertEquals(List.of(second), repository.filterByLabel( Set.of("2")));
     }
 
     @Test
@@ -85,6 +84,6 @@ class IssueManagerTest {
         manager.add(second);
         manager.add(third);
 
-        assertEquals(List.of(first), manager.filterByAssigned( Collections.singleton("man1")));
+        assertEquals(List.of(first), repository.filterByAssigned( Set.of("man1")));
     }
 }

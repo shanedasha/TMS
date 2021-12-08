@@ -3,54 +3,83 @@ package ru.netology.repository;
 import ru.netology.domain.Issue;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
+
 public class IssueRepository {
-    private Collection<Issue> items = new ArrayList<>();
-    private Issue issue = new Issue();
+    private final List<Issue> items = new ArrayList<>();
 
     public void save(Issue item) {
         items.add(item);
     }
 
-    public Collection<Issue> findAll() {
+    public List<Issue> findAll() {
         return items;
     }
 
-    public Collection<Issue> listOpenIssue(Boolean isOpen) {
-        items.stream().filter(issue -> issue.isOpen() == isOpen);
+    public List<Issue> listOpenIssue(boolean isOpen) {
+        for (Issue issue : findAll()) {
+            if (issue.getIsOpen()== true) {
+                return items;
+            }
+        }
         return items;
     }
 
-    public Collection<Issue> listClosedIssue(Boolean isOpen) {
-        items.stream().filter(issue -> issue.isOpen() != isOpen);
+
+    public List<Issue> listClosedIssue(boolean isOpen) {
+        for (Issue issue : findAll()) {
+            if (!issue.getIsOpen()) {
+                return items;
+            }
+        }
         return items;
     }
 
-    public Collection<Issue> openIssue(int id) {
-        issue.setOpen(true);
+
+    public List<Issue> openIssue(int id) {
+        for (Issue issue : findAll()) {
+            if ((issue.getIsOpen()) && issue.getId() == id) {
+                issue.setIsOpen(false);
+            }
+        }
         return items;
     }
 
-    public Collection<Issue> closeIssue(int id) {
-        issue.setOpen(false);
+    public List<Issue> closeIssue(int id) {
+        for (Issue issue : findAll()) {
+            if ((!issue.getIsOpen()) && issue.getId() == id) {
+                issue.setIsOpen(true);
+                return items;
+            }
+        }
         return items;
     }
 
-    public void removeById(int id) {
-        items.removeIf(el -> el.getId() == id);
+    public List<Issue> filterByAuthor(String author) {
+        for (Issue issue : findAll()) {
+            if (issue.getAuthor().equals(author)) {
+                return items;
+            }
+        }
+        return items;
+    }
+    public List<Issue> filterByLabel(Set<String> label) {
+        for (Issue issue : findAll()) {
+            if (issue.getLabel().equals(label)) {
+                return items;
+            }
+        }
+        return items;
     }
 
-    public void filterByAuthor(String author) {
-        items.stream().filter(issue -> issue.getAuthor().equalsIgnoreCase(author));
-    }
-
-    public void filterByLabel(Set<String> label) {
-        items.stream().filter(el -> el.getLabel() == label);
-    }
-
-    public void filterByAssigned(Set<String> assigned) {
-        items.stream().filter(el -> el.getAssigned() == assigned);
+    public List<Issue> filterByAssigned(Set<String> assigned) {
+        for (Issue issue : findAll()) {
+            if (issue.getAssigned().equals(assigned)) {
+                return items;
+            }
+        }
+        return items;
     }
 }

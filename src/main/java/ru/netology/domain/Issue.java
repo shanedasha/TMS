@@ -1,10 +1,8 @@
 package ru.netology.domain;
 
-import javax.swing.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
-public class Issue {
+public class Issue implements List<Issue> {
     private int id;
     private String author;
     private Set<String> label;
@@ -74,12 +72,126 @@ public class Issue {
         this.assigned = assigned;
     }
 
-    public boolean isOpen() {
+    public boolean getIsOpen() {
         return isOpen;
     }
 
-    public void setOpen(boolean open) {
-        isOpen = open;
+    public void setIsOpen(boolean open) {
+        isOpen = true;
+    }
+
+    @Override
+    public int size() {
+        return 0;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
+    @Override
+    public boolean contains(Object o) {
+        return false;
+    }
+
+    @Override
+    public Iterator<Issue> iterator() {
+        return null;
+    }
+
+    @Override
+    public Object[] toArray() {
+        return new Object[0];
+    }
+
+    @Override
+    public <T> T[] toArray(T[] a) {
+        return null;
+    }
+
+    @Override
+    public boolean add(Issue issue) {
+        return false;
+    }
+
+    @Override
+    public boolean remove(Object o) {
+        return false;
+    }
+
+    @Override
+    public boolean containsAll(Collection<?> c) {
+        return false;
+    }
+
+    @Override
+    public boolean addAll(Collection<? extends Issue> c) {
+        return false;
+    }
+
+    @Override
+    public boolean addAll(int index, Collection<? extends Issue> c) {
+        return false;
+    }
+
+    @Override
+    public boolean removeAll(Collection<?> c) {
+        return false;
+    }
+
+    @Override
+    public boolean retainAll(Collection<?> c) {
+        return false;
+    }
+
+    @Override
+    public void clear() {
+
+    }
+
+    @Override
+    public Issue get(int index) {
+        return null;
+    }
+
+    @Override
+    public Issue set(int index, Issue element) {
+        return null;
+    }
+
+    @Override
+    public void add(int index, Issue element) {
+
+    }
+
+    @Override
+    public Issue remove(int index) {
+        return null;
+    }
+
+    @Override
+    public int indexOf(Object o) {
+        return 0;
+    }
+
+    @Override
+    public int lastIndexOf(Object o) {
+        return 0;
+    }
+
+    @Override
+    public ListIterator<Issue> listIterator() {
+        return null;
+    }
+
+    @Override
+    public ListIterator<Issue> listIterator(int index) {
+        return null;
+    }
+
+    @Override
+    public List<Issue> subList(int fromIndex, int toIndex) {
+        return null;
     }
 }
-
